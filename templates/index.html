@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LaTeX Renderer</title>
+    <!-- 引入 MathJax 并配置 -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+        #output {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LaTeX Renderer</h1>
+        <textarea id="input" placeholder="Enter text with LaTeX formulas enclosed in $ or $$ symbols"></textarea>
+        <button onclick="renderLatex()">Render</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function renderLatex() {
+            const input = document.getElementById('input').value;
+            const output = document.getElementById('output');
+            
+            fetch('/render', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({text: input})
+            })
+            .then(response => response.json())
+            .then(data => {
+                output.innerHTML = data.text;
+                // 重新渲染 LaTeX
+                MathJax.typesetPromise([output]).catch((err) => console.log(err));
+            });
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX Renderer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>LaTeX Renderer</h1>
+        <div class="editor-container">
+            <div class="input-section">
+                <h2>Input</h2>
+                <textarea id="latex-input" placeholder="Enter your LaTeX code here..."></textarea>
+            </div>
+            <div class="output-section">
+                <h2>Output</h2>
+                <div id="latex-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('latex-input');
+        const output = document.getElementById('latex-output');
+
+        function renderLatex() {
+            output.innerHTML = input.value;
+            MathJax.typesetPromise([output]).catch((err) => console.log(err));
+        }
+
+        // Debounce function to limit the number of renders
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Add event listener with debouncing
+        input.addEventListener('input', debounce(renderLatex, 300));
+    </script>
+</body>
+</html> 

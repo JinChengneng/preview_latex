@@ -6,5 +6,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+# This is for local development
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)
+
+# This is for Vercel
+app = app 

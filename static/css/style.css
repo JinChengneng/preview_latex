@@ -46,9 +46,28 @@ h2 {
 
 #latex-output {
     min-height: 400px;
-    padding: 10px;
+    padding: 10px 30px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #fff;
     overflow-x: auto;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #222;
+    text-align: justify;
+    hyphens: auto;
+}
+
+#latex-output p {
+    margin-bottom: 1.2em;
+    text-indent: 2em;
+}
+
+#latex-output .MathJax {
+    font-size: 115%;
+}
+
+#latex-output .MathJax[display="block"] {
+    margin: 1.5em 0;
 } 

@@ -40,7 +40,13 @@
         const output = document.getElementById('latex-output');
 
         function renderLatex() {
-            output.innerHTML = input.value;
+            // Replace empty lines with <br> tags
+            const formattedText = input.value
+                .split('\n')
+                .map(line => line.trim() === '' ? '<br>' : line)
+                .join('\n');
+                
+            output.innerHTML = formattedText;
             MathJax.typesetPromise([output]).catch((err) => console.log(err));
         }
 

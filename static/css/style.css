@@ -70,4 +70,25 @@ h2 {
 
 #latex-output .MathJax[display="block"] {
     margin: 1.5em 0;
+}
+
+#latex-output ol, #latex-output ul {
+    padding-left: 2em;
+    margin: 1em 0;
+}
+
+#latex-output li {
+    margin-bottom: 0.5em;
+}
+
+#latex-output ul {
+    list-style-type: disc;
+}
+
+#latex-output ul ul {
+    list-style-type: circle;
+}
+
+#latex-output ul ul ul {
+    list-style-type: square;
 } 

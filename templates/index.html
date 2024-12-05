@@ -11,10 +11,14 @@
             tex: {
                 inlineMath: [['$', '$']],
                 displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEnvironments: true
+                processEnvironments: true,
+                packages: {'[+]': ['ams', 'base', 'noerrors', 'noundefined', 'newcommand', 'boldsymbol']}
             },
             options: {
                 skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            },
+            loader: {
+                load: ['[tex]/ams', '[tex]/noerrors', '[tex]/noundefined', '[tex]/newcommand', '[tex]/boldsymbol']
             }
         };
     </script>
@@ -44,9 +48,27 @@
         const input = document.getElementById('latex-input');
         const output = document.getElementById('latex-output');
 
+        function processLists(text) {
+            // Process enumerate environments
+            text = text.replace(/\\begin{enumerate}([\s\S]*?)\\end{enumerate}/g, (match, content) => {
+                const items = content.split('\\item').filter(item => item.trim());
+                const listItems = items.map(item => `<li>${item.trim()}</li>`).join('');
+                return `<ol>${listItems}</ol>`;
+            });
+
+            // Process itemize environments
+            text = text.replace(/\\begin{itemize}([\s\S]*?)\\end{itemize}/g, (match, content) => {
+                const items = content.split('\\item').filter(item => item.trim());
+                const listItems = items.map(item => `<li>${item.trim()}</li>`).join('');
+                return `<ul>${listItems}</ul>`;
+            });
+
+            return text;
+        }
+
         function renderLatex() {
-            // Replace empty lines with <br> tags
-            const formattedText = input.value
+            // Replace empty lines with <br> tags and process list environments
+            const formattedText = processLists(input.value)
                 .split('\n')
                 .map(line => line.trim() === '' ? '<br>' : line)
                 .join('\n');

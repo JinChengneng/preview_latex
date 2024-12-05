@@ -67,10 +67,16 @@
         }
 
         function renderLatex() {
-            // Replace empty lines with <br> tags and process list environments
+            // Filter out comment lines and process the remaining text
             const formattedText = processLists(input.value)
                 .split('\n')
-                .map(line => line.trim() === '' ? '<br>' : line)
+                .map(line => {
+                    // Skip lines that begin with //
+                    if (line.trim().startsWith('//')) {
+                        return '';
+                    }
+                    return line.trim() === '' ? '<br>' : line;
+                })
                 .join('\n');
                 
             output.innerHTML = formattedText;

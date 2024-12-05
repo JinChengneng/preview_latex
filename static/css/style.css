@@ -53,6 +53,8 @@ h2 {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-family: monospace;
+    font-size: 16px;
+    line-height: 1.6;
     resize: vertical;
 }
 
@@ -64,8 +66,8 @@ h2 {
     background-color: #fff;
     overflow-x: auto;
     font-family: "Times New Roman", Times, serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.8;
     color: #222;
     text-align: justify;
     hyphens: auto;
@@ -77,7 +79,7 @@ h2 {
 }
 
 #latex-output .MathJax {
-    font-size: 115%;
+    font-size: 120%;
 }
 
 #latex-output .MathJax[display="block"] {

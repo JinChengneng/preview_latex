@@ -30,19 +30,25 @@
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>LaTeX Renderer</h1>
-        <div class="editor-container">
-            <div class="input-section">
-                <h2>Input</h2>
-                <textarea id="latex-input" placeholder="Enter your LaTeX code here..."></textarea>
-            </div>
-            <div class="output-section">
-                <h2>Output</h2>
-                <div id="latex-output"></div>
+    <div class="wrapper">
+        <div class="container">
+            <h1>LaTeX Renderer</h1>
+            <div class="editor-container">
+                <div class="input-section">
+                    <h2>Input</h2>
+                    <textarea id="latex-input" placeholder="Enter your LaTeX code here..."></textarea>
+                </div>
+                <div class="output-section">
+                    <h2>Output</h2>
+                    <div id="latex-output"></div>
+                </div>
             </div>
         </div>
+        <div class="push"></div>
     </div>
+    <footer class="footer">
+        <p>Developed by Jin Chengneng | <a href="mailto:me@jinchengneng.com">me@jinchengneng.com</a></p>
+    </footer>
 
     <script>
         const input = document.getElementById('latex-input');

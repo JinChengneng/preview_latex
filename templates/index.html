@@ -54,7 +54,18 @@
         const input = document.getElementById('latex-input');
         const output = document.getElementById('latex-output');
 
+        function processCodeBlocks(text) {
+            // Process all code blocks with triple backticks as LaTeX
+            return text.replace(/```([\s\S]*?)```/g, (match, content) => {
+                // Wrap all code block content in display math
+                return `$$${content.trim()}$$`;
+            });
+        }
+
         function processLists(text) {
+            // First process code blocks
+            text = processCodeBlocks(text);
+
             // Process enumerate environments
             text = text.replace(/\\begin{enumerate}([\s\S]*?)\\end{enumerate}/g, (match, content) => {
                 const items = content.split('\\item').filter(item => item.trim());

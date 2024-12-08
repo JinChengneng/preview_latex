@@ -14,12 +14,17 @@ body {
 
 .wrapper {
     flex: 1 0 auto;
-    padding: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
-    max-width: 1200px;
+    width: 95%;
     margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -31,14 +36,20 @@ h1 {
     display: flex;
     gap: 20px;
     margin-top: 20px;
+    flex: 1;
+    height: calc(100vh - 140px);
 }
 
 .input-section, .output-section {
     flex: 1;
     background-color: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 10px);
+    box-sizing: border-box;
 }
 
 h2 {
@@ -48,23 +59,25 @@ h2 {
 
 #latex-input {
     width: 100%;
-    height: 400px;
+    flex: 1;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-family: monospace;
     font-size: 16px;
     line-height: 1.6;
-    resize: vertical;
+    resize: none;
+    box-sizing: border-box;
+    overflow: auto;
 }
 
 #latex-output {
-    min-height: 400px;
+    flex: 1;
     padding: 10px 30px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #fff;
-    overflow-x: auto;
+    overflow: auto;
     font-family: "Times New Roman", Times, serif;
     font-size: 18px;
     line-height: 1.8;
@@ -110,7 +123,7 @@ h2 {
 .footer {
     flex-shrink: 0;
     text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
     color: #666;
     font-size: 14px;
     border-top: 1px solid #eee;

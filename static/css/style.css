@@ -120,6 +120,51 @@ h2 {
     list-style-type: square;
 }
 
+#latex-output .theorem,
+#latex-output .proposition,
+#latex-output .proof,
+#latex-output .lemma {
+    margin: 1.5em 0;
+    padding: 0.8em 1em;
+    border-radius: 4px;
+}
+
+#latex-output .theorem,
+#latex-output .proposition,
+#latex-output .lemma {
+    background-color: #f8f9fa;
+    border-left: 4px solid #0056b3;
+}
+
+#latex-output .proof {
+    background-color: #fff;
+    border-left: 4px solid #6c757d;
+}
+
+#latex-output .theorem-header,
+#latex-output .proposition-header,
+#latex-output .proof-header,
+#latex-output .lemma-header {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+#latex-output .theorem-header,
+#latex-output .proposition-header,
+#latex-output .lemma-header {
+    color: #0056b3;
+}
+
+#latex-output .proof-header {
+    color: #6c757d;
+}
+
+#latex-output .proof::after {
+    content: "□";
+    float: right;
+    margin-top: 1em;
+}
+
 .footer {
     flex-shrink: 0;
     text-align: center;

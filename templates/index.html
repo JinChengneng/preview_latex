@@ -83,9 +83,33 @@
             return text;
         }
 
+        function processEnvironments(text) {
+            // Process theorem environments
+            text = text.replace(/\\begin{theorem}([\s\S]*?)\\end{theorem}/g, (match, content) => {
+                return `<div class="theorem"><div class="theorem-header">Theorem.</div>${content.trim()}</div>`;
+            });
+
+            // Process lemma environments
+            text = text.replace(/\\begin{lemma}([\s\S]*?)\\end{lemma}/g, (match, content) => {
+                return `<div class="lemma"><div class="lemma-header">Lemma.</div>${content.trim()}</div>`;
+            });
+
+            // Process proposition environments
+            text = text.replace(/\\begin{proposition}([\s\S]*?)\\end{proposition}/g, (match, content) => {
+                return `<div class="proposition"><div class="proposition-header">Proposition.</div>${content.trim()}</div>`;
+            });
+
+            // Process proof environments
+            text = text.replace(/\\begin{proof}([\s\S]*?)\\end{proof}/g, (match, content) => {
+                return `<div class="proof"><div class="proof-header">Proof.</div>${content.trim()}</div>`;
+            });
+
+            return text;
+        }
+
         function renderLatex() {
             // Filter out comment lines and process the remaining text
-            const formattedText = processLists(input.value)
+            const formattedText = processEnvironments(processLists(input.value))
                 .split('\n')
                 .map(line => {
                     // Skip lines that begin with //
